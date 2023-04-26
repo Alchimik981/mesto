@@ -2,3 +2,10 @@
   max-width: 880px;
   margin: auto;
 }
+
+@media screen and (max-width: 1023px)   {
+  .content {
+    width: 88%;
+    margin: auto;
+  }
+}

@@ -1,7 +1,9 @@
 .element {
   background-color: #ffffff;
   color: #000000;
-  max-width: 282px;
   border-radius: 10px;
   overflow: hidden;
+  width: 282px;
+  margin: auto;
 }
+

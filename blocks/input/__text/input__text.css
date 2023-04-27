@@ -5,14 +5,10 @@
   box-sizing: border-box;
   padding: 13px;
   border: 0;
-  border-bottom: 1px solid #000000;
-  transition: .1s border;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.input__text:hover {
-
-}
-
-.input__text:active {
-  border: 1px solid #00BFFF;
+.input__text:focus {
+  outline: 0;
+  box-shadow: 0 0 10px 5px #1E90FF;
 }

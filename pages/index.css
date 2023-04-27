@@ -30,9 +30,15 @@
 @import url(../blocks/popup/__save-btn/popup__save-btn.css);
 
 
+.popup__close {
+  align-self: flex-end;
+  margin: -40px -40px 0 0;
+}
 
-
-
+.popup__close:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
 
 
 

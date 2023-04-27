@@ -4,17 +4,9 @@ let addButton = profile.querySelector('.profile__add-btn');
 let popup = document.querySelector('.popup');
 let closePopup = popup.querySelector('.popup__close');
 
-function openEditPopup() {
-  popup.classList.add('popup_active');
-}
+editButton.addEventListener('click', () => popup.classList.add('popup_active'));
 
-editButton.addEventListener('click', openEditPopup);
-
-function closeEditPopup() {
-  popup.classList.remove('popup_active');
-}
-
-closePopup.addEventListener('click', closeEditPopup);
+closePopup.addEventListener('click', () => popup.classList.remove('popup_active'));
 
 let formElement = document.querySelector('.popup__container');
 let nameInput = document.querySelector('.input__text_type_name');

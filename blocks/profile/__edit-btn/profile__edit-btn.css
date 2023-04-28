@@ -2,17 +2,19 @@
   width: 24px;
   height: 24px;
   margin: 15px 0 0 18px;
+  transition: 0.5s;
 }
 
 .profile__edit-btn:hover {
   cursor: pointer;
   opacity: 0.6;
+  transition: 0.5s;
 }
 
 @media screen and (max-width: 767px) {
   .profile__edit-btn {
     width: 18px;
     height: 18px;
-    margin: 8px 0 0 10px;
+    margin: 14px 0 0 10px;
   }
 }

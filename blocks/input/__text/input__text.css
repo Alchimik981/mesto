@@ -1,6 +1,6 @@
 .input__text {
-  margin: 0;
-  padding: 13px;
+  margin: 17px 0 0 0;
+  padding: 13px 0;
   width: 100%;
   box-sizing: border-box;
   border: 0;
@@ -11,3 +11,8 @@
   outline: 0;
   box-shadow: 0 0 10px 5px #1E90FF;
 }
+
+.input__text:first-of-type {
+  margin: 0;
+}
+

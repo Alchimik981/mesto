@@ -1,8 +1,10 @@
 .element__btn {
-  margin: auto 0;
+  margin: auto 5px auto 0;
+  transition: 0.5s;
 }
 
 .element__btn:hover {
   cursor: pointer;
   opacity: 0.5;
+  transition: 0.5s;
 }

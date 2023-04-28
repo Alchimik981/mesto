@@ -3,11 +3,13 @@
   align-self: flex-end;
   top: -40px;
   right: -40px;
+  transition: 0.5s;
 }
 
 .popup__close:hover {
   cursor: pointer;
   opacity: 0.6;
+  transition: 0.5s;
 }
 
 @media screen and (max-width: 767px)   {

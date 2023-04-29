@@ -1,13 +1,1 @@
-.input {
-  margin: 30px auto 0 auto;
-  width: 84%;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-}
 
-@media screen and (max-width: 1023px)   {
-  .input {
-    margin: 50px auto 0 auto;
-  }
-}

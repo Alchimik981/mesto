@@ -1,7 +1,10 @@
 .input__text {
-  margin: 17px 0 0 0;
+  margin: 20px auto 0 auto;
+  width: 84%;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
   padding: 13px 0;
-  width: 100%;
   box-sizing: border-box;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -13,6 +16,6 @@
 }
 
 .input__text:first-of-type {
-  margin: 0;
+  margin: 47px auto 0 auto;;
 }
 

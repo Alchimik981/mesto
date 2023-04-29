@@ -24,9 +24,9 @@
             <h1 class="profile__name" id="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__about" id="profile__about">Исследователь океана</p>
           </div>
-          <img class="profile__edit-btn" src="./images/Edit_Button.svg" alt="кнопка Редактировать">
+          <button type="button" class="profile__edit-btn"></button>
         </div>
-        <div class="profile__add-btn"></div>
+        <button type="button" class="profile__add-btn"></button>
       </section>
 
       <section class="elements">
@@ -34,42 +34,42 @@
           <img class="element__pic" src="./images/karachaevsk.jpg" alt="Карачаево-Черкессия">
           <div class="element__group">
             <h2 class="element__text">Карачаево-Черкессия</h2>
-            <img class="element__btn" src="./images/Group.svg" alt="Лайк">
+            <button type="button" class="element__btn"></button>
           </div>
         </article>
         <article class="element">
           <img class="element__pic" src="./images/elbrus.jpg" alt="Эльбрус">
           <div class="element__group">
             <h2 class="element__text">Гора Эльбрус</h2>
-            <img class="element__btn" src="./images/Group.svg" alt="Лайк">
+            <button type="button" class="element__btn"></button>
           </div>
         </article>
         <article class="element">
           <img class="element__pic" src=".//images/dombai.jpg" alt="Домбай">
           <div class="element__group">
             <h2 class="element__text">Домбай</h2>
-            <img class="element__btn" src="./images/Group.svg" alt="Лайк">
+            <button type="button" class="element__btn"></button>
           </div>
         </article>
         <article class="element">
           <img class="element__pic" src=".//images/altai.jpg" alt="Алтай">
           <div class="element__group">
             <h2 class="element__text">Алтай</h2>
-            <img class="element__btn" src="./images/Group.svg" alt="Лайк">
+            <button type="button" class="element__btn"></button>
           </div>
         </article>
         <article class="element">
           <img class="element__pic" src="./images/crimea.jpg" alt="Крым">
           <div class="element__group">
             <h2 class="element__text">Крым</h2>
-            <img class="element__btn" src="./images/Group.svg" alt="Лайк">
+            <button type="button" class="element__btn"></button>
           </div>
         </article>
         <article class="element">
           <img class="element__pic" src="./images/siberia.jpg" alt="Сибирь">
           <div class="element__group">
             <h2 class="element__text">Сибирь</h2>
-            <img class="element__btn" src="./images/Group.svg" alt="Лайк">
+            <button type="button" class="element__btn"></button>
           </div>
         </article>
       </section>
@@ -82,17 +82,15 @@
 
     <div class="popup">
       <form class="popup__container" name="form">
-        <img class="popup__close" src="./images/Close_Icon.svg" alt="крестик">
+        <button type="button" class="popup__close"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
-        <div class="input">
-          <input type="text" id="input_name" placeholder="" value="Жак-Ив Кусто"
-            class="input__text input__text_type_name">
-          <input type="text" id="input_about" placeholder="" value="Исследователь океана"
-            class="input__text input__text_type_about">
-          <button type="submit" class="popup__save-btn">
-            Сохранить
-          </button>
-        </div>
+        <input name="input_name" type="text" id="input_name" placeholder="" value="Жак-Ив Кусто"
+          class="input__text input__text_type_name">
+        <input name="input_about" type="text" id="input_about" placeholder="" value="Исследователь океана"
+          class="input__text input__text_type_about">
+        <button type="submit" class="popup__save-btn">
+          Сохранить
+        </button>
       </form>
     </div>
 

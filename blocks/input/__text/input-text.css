@@ -1,4 +1,4 @@
-.input__text {
+.input-text {
   margin: 20px auto 0 auto;
   width: 84%;
   font-weight: 400;
@@ -10,12 +10,12 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.input__text:focus {
+.input-text:focus {
   outline: 0;
   box-shadow: 0 0 10px 5px #1E90FF;
 }
 
-.input__text:first-of-type {
+.input-text:first-of-type {
   margin: 47px auto 0 auto;
 }
 

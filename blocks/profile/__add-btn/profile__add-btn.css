@@ -26,5 +26,6 @@
     position: static;
     width: 282px;
     margin: 8px auto 0 auto;
+    background-size: 16px 16px;
   }
 }

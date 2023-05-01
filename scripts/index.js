@@ -11,7 +11,13 @@ let aboutInput = document.querySelector('.input__text_type_about');
 let savePopup = document.querySelector('.popup__save-btn')
 
 editButton.addEventListener('click', () => popup.classList.add('popup_active'));
-closePopup.addEventListener('click', () => popup.classList.remove('popup_active'));
+
+function saveData() {
+  popup.classList.remove('popup_active');
+  closePopup.addEventListener('click', () => popup.classList.remove('popup_active'));
+}
+
+saveData();
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
@@ -22,7 +28,7 @@ function handleFormSubmit(evt) {
   profileName.textContent = `${nameInput}`;
   profileAbout.textContent = `${aboutInput}`;
 
-  popup.classList.toggle('popup_active');
+  saveData();
 }
 
 formElement.addEventListener('submit', handleFormSubmit);

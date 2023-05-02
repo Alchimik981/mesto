@@ -21,8 +21,8 @@ closePopup.addEventListener('click', popupClose);
 function handleFormSubmit(evt) {
   evt.preventDefault();
 
-  nameInput = document.getElementById('input_name').value;
-  aboutInput = document.getElementById('input_about').value;
+  nameInput = document.querySelector('.input-text_type_name').value;
+  aboutInput = document.querySelector('.input-text_type_about').value;
 
   profileName.textContent = `${nameInput}`;
   profileAbout.textContent = `${aboutInput}`;

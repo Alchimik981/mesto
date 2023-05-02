@@ -10,14 +10,15 @@ let nameInput = document.querySelector('.input__text_type_name');
 let aboutInput = document.querySelector('.input__text_type_about');
 let savePopup = document.querySelector('.popup__save-btn')
 
-editButton.addEventListener('click', () => popup.classList.add('popup_active'));
-
-function saveData() {
+function popupClose() {
   popup.classList.remove('popup_active');
-  closePopup.addEventListener('click', () => popup.classList.remove('popup_active'));
 }
 
-saveData();
+popupClose();
+
+editButton.addEventListener('click', () => popup.classList.add('popup_active'));
+closePopup.addEventListener('click', popupClose);
+
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
@@ -28,7 +29,7 @@ function handleFormSubmit(evt) {
   profileName.textContent = `${nameInput}`;
   profileAbout.textContent = `${aboutInput}`;
 
-  saveData();
+  popupClose();
 }
 
 formElement.addEventListener('submit', handleFormSubmit);

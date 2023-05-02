@@ -14,8 +14,6 @@ function popupClose() {
   popup.classList.remove('popup_active');
 }
 
-popupClose();
-
 editButton.addEventListener('click', () => popup.classList.add('popup_active'));
 closePopup.addEventListener('click', popupClose);
 

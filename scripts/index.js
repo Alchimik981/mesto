@@ -52,15 +52,16 @@ function openEditPopup() {
 
 function addFormSubmit(evt) {
   evt.preventDefault();
-
   nameInput = document.querySelector('.input-text_type_name').value;
   aboutInput = document.querySelector('.input-text_type_about').value;
 
-  elementText = document.querySelector('.element__text').textContent = `${nameInput}`;
-  elementPic = document.querySelector('.element__pic').src = `${aboutInput}`;
+  const cardTemplate = document.querySelector('#element-template').content;
+  const elementTemplate = cardTemplate.querySelector('.element').cloneNode(true);
+  elementTemplate.querySelector('.element__pic').src = `${aboutInput}`;
+  elementTemplate.querySelector('.element__text').textContent = `${nameInput}`;
+  elementContainer.prepend(elementTemplate);
 
   popupClose();
-
 }
 
 function openAddPopup() {
@@ -72,16 +73,6 @@ function openAddPopup() {
   aboutInput = popup.querySelector('.input-text_type_about').placeholder = 'Добавьте ссылку';
 
   formElement.addEventListener('submit', addFormSubmit);
-}
-
-
-function addCards(elementText, elementPic) {
-  const cardTemplate = document.querySelector('#element-template').content;
-  const elementTemplate = cardTemplate.querySelector('.element').cloneNode(true);
-
-  elementTemplate.querySelector('.element__pic').textContent = elementPic;
-  elementTemplate.querySelector('.element__text').textContent = elementText;
-  elementContainer.after(elementTemplate);
 }
 
 
@@ -112,21 +103,15 @@ const initialCards = [
   }
 ];
 
-const cardsName = initialCards.map(function (el) {
-  return el.name;
-});
-console.log(cardsName.name)
 
-const cardsLink = initialCards.map(function (el) {
-  return el.link;
-});
-console.log(cardsLink)
-
-initialCards.forEach(() => {
+function addCards () {
+initialCards.forEach((item) => {
   const cardTemplate = document.querySelector('#element-template').content;
   const elementTemplate = cardTemplate.querySelector('.element').cloneNode(true);
-  elementTemplate.querySelector('.element__pic').src = cardsLink[0];
-  elementTemplate.querySelector('.element__text').textContent = cardsName[0];
+  elementTemplate.querySelector('.element__pic').src = item.link;
+  elementTemplate.querySelector('.element__text').textContent = item.name;
   elementContainer.append(elementTemplate);
 })
+}
 
+addCards()

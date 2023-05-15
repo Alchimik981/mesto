@@ -1,0 +1,24 @@
+.popup-pic {
+  position: fixed;
+  padding: 90px 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  transition: all 0.5s ease;
+	opacity: 0;
+	visibility: hidden;
+}
+
+@media screen and (max-width: 1024px)   {
+  .popup-pic {
+    padding: 85px 0;
+  }
+}
+
+@media screen and (max-width: 767px)   {
+  .popup-pic {
+    padding: 136px 0;
+  }
+}

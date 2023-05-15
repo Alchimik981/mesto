@@ -32,75 +32,10 @@
 @import url(../blocks/input-text/_type/input-text_type_about.css);
 @import url(../blocks/popup/__save-btn/popup__save-btn.css);
 @import url(../blocks/popup/__close/popup__close.css);
+@import url(../blocks/popup-pic/popup-pic.css);
+@import url(../blocks/popup-pic/_active/popup-pic_active.css);
+@import url(../blocks/popup-pic/__container/popup-pic__container.css);
+@import url(../blocks/popup-pic/__description/popup-pic__description.css);
+@import url(../blocks/popup-pic/__photo/popup-pic__photo.css);
+@import url(../blocks/popup-pic/__close/popup-pic__close.css);
 
-
-
-.popup-pic {
-  position: fixed;
-  padding: 90px 0;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
-  transition: all 0.5s ease;
-	opacity: 0;
-	visibility: hidden;
-}
-
-.popup-pic_active {
-  visibility: visible;
-  opacity: 1;
-}
-
-.popup-pic__container {
-  width: max-content;
-  margin: 0 auto;
-  position: relative;
-}
-
-.popup-pic__photo {
-  max-width: 816px;
-  height: 540px;
-  object-fit: contain;
-}
-
-.popup-pic__description {
-  margin: 10px 0 0 0;
-  padding: 0;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 15px;
-}
-
-.popup-pic__close {
-  background-image: url(../images/Close_Icon.svg);
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  border: none;
-  font: inherit;
-  color: inherit;
-  background-color: transparent;
-  position: absolute;
-  align-self: flex-end;
-  top: -40px;
-  right: -40px;
-  transition: 0.5s;
-}
-
-.popup-pic__close:hover {
-  cursor: pointer;
-  opacity: 0.6;
-  transition: 0.5s;
-}
-
-@media screen and (max-width: 767px)   {
-  .popup-pic__close {
-    width: 20px;
-    height: 20px;
-    background-size: contain;
-    top: -30px;
-    right: 0;
-  }
-}

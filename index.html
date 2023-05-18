@@ -41,7 +41,7 @@
         <img class="element__pic" src="./" alt="фото">
         <div class="element__group">
           <h2 class="element__text"></h2>
-          <button type="button" class="element__btn"></button>
+          <button type="button" class="element__like-btn"></button>
         </div>
       </article>
     </template>
@@ -51,29 +51,44 @@
     </footer>
 
 
-    <div class="popup">
-      <form class="popup__container" name="form">
+    <div class="popup popup_edit-info">
+      <form class="popup__container popup__container_edit-info" name="form">
         <button type="button" class="popup__close"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
         <input class="input-text input-text_type_name" name="input_name" type="text" id="input_name"
-          placeholder="Введите имя" value="Жак-Ив Кусто">
+          placeholder="Введите имя" value="/">
         <input class="input-text input-text_type_about" name="input_about" type="text" id="input_about"
-          placeholder="О себе" value="Исследователь океана">
+          placeholder="О себе" value="/">
         <button type="submit" class="popup__save-btn">
           Сохранить
         </button>
       </form>
     </div>
 
-    <div class="popup-pic">
-      <div class="popup-pic__container">
-      <button type="button" class="popup-pic__close"></button>
-      <img class="popup-pic__photo" src="./" alt="фото">
-      <p class="popup-pic__description"></p>
+    <div class="popup popup_add-card">
+      <form class="popup__container  popup__container_add-card" name="form">
+        <button type="button" class="popup__close"></button>
+        <h3 class="popup__title">Новое место</h3>
+        <input class="input-text input-text_type_place" name="input_place" type="text" id="input_place"
+          placeholder="Название" value="">
+        <input class="input-text input-text_type_link" name="input_link" type="text" id="input_link"
+          placeholder="Добавьте ссылку" value="">
+        <button type="submit" class="popup__save-btn">
+          Сохранить
+        </button>
+      </form>
+    </div>
+
+    <div class="popup popup_open-card">
+      <div class="popup__full-pic">
+      <button type="button" class="popup__close"></button>
+      <img class="popup__photo" src="./" alt="фото">
+      <p class="popup__description"></p>
     </div>
     </div>
 
   </div>
+  <script src="./scripts/cards.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 

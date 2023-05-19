@@ -7,10 +7,6 @@
   font: inherit;
   color: inherit;
   background-color: transparent;
-  position: absolute;
-  align-self: flex-end;
-  top: -40px;
-  right: -40px;
   transition: 0.5s;
 }
 
@@ -25,7 +21,5 @@
     width: 20px;
     height: 20px;
     background-size: contain;
-    top: -30px;
-    right: 0;
   }
 }

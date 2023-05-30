@@ -1,7 +1,6 @@
 const profile = document.querySelector(".profile");
 const editButton = profile.querySelector(".profile__edit-btn");
 const addButton = profile.querySelector(".profile__add-btn");
-const popup = document.querySelector(".popup");
 const popupEditInfo = document.querySelector(".popup_edit-info");
 const popupAddCard = document.querySelector(".popup_add-card");
 const popupOpenCard = document.querySelector(".popup_open-card");
@@ -12,17 +11,63 @@ const profileName = document.querySelector(".profile__name");
 const profileAbout = document.querySelector(".profile__about");
 const formEditInfo = document.querySelector(".popup__container_edit-info");
 const formAddCard = document.querySelector(".popup__container_add-card");
-const nameInputValue = document.querySelector(".profile__name").textContent;
-const aboutInputValue = document.querySelector(".profile__about").textContent;
 const nameInput = document.querySelector(".input-text_type_name");
 const aboutInput = document.querySelector(".input-text_type_about");
-const placeInput = document.querySelector(".input__text_type_place");
-const linkInput = document.querySelector(".input__text_type_link");
+const placeInput = document.querySelector(".input-text_type_place");
+const linkInput = document.querySelector(".input-text_type_link");
 const savePopupEditInfo = popupEditInfo.querySelector(".popup__save-btn");
 const savePopupAddCard = popupAddCard.querySelector(".popup__save-btn");
 const elementsSection = document.querySelector(".elements");
 const popupLink = popupOpenCard.querySelector(".popup__photo");
 const popupName = popupOpenCard.querySelector(".popup__description");
+const formError = formEditInfo.querySelector(`.${nameInput.id}-error`);
+
+
+const showInputError = (formElement, inputElement, errorMessage) => {
+  console.log(inputElement)
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add('input-text_invalid');
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add('input-text__error_active');
+}
+
+const hideInputError = (formElement, inputElement) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove('input-text_invalid');
+  errorElement.classList.remove('input-text__error_active');
+  errorElement.textContent = '';
+}
+
+const checkInputValidity = (formElement, inputElement) => {
+  if(!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage);
+  } else {
+    hideInputError(formElement, inputElement);
+  }
+}
+
+const setEventListeners = (formElement) => {
+  const inputList = Array.from(formEditInfo.querySelectorAll('.input-text'));
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', function (){
+      checkInputValidity(formElement, inputElement);
+  });
+});
+};
+
+const enableValidation = () => {
+  const formList = Array.from(document.querySelector('.popup__container_edit-info'));
+  formList.forEach((formElement) => {
+    formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+    });
+    setEventListeners(formElement);
+  })
+}
+
+enableValidation();
+
+
 
 addButton.addEventListener("click", openPopupAddCard);
 editButton.addEventListener("click", openPopupEditInfo);
@@ -32,11 +77,11 @@ closePopupOpenCard.addEventListener("click", closePopupFullCard);
 formEditInfo.addEventListener("submit", handleEditFormSubmit);
 formAddCard.addEventListener("submit", handleAddFormSubmit);
 
-function openPopup(popup) {
-  popup.classList.add("popup_active");
+function openPopup(obj) {
+  obj.classList.add("popup_active");
 }
-function closePopup(popup) {
-  popup.classList.remove("popup_active");
+function closePopup(obj) {
+  obj.classList.remove("popup_active");
 }
 
 function openPopupEditInfo() {
@@ -77,8 +122,8 @@ function handleAddFormSubmit(evt) {
   evt.preventDefault();
   renderCard(
     {
-      name: document.querySelector(".input-text_type_place").value,
-      link: document.querySelector(".input-text_type_link").value,
+      name: placeInput.value,
+      link: linkInput.value,
     },
     elementsSection
   );

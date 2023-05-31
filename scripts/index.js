@@ -18,10 +18,9 @@ const linkInput = document.querySelector(".input-text_type_link");
 const savePopupEditInfo = popupEditInfo.querySelector(".popup__save-btn");
 const savePopupAddCard = popupAddCard.querySelector(".popup__save-btn");
 const elementsSection = document.querySelector(".elements");
-const content = document.querySelector('.content')
+const content = document.querySelector(".content");
 const popupLink = popupOpenCard.querySelector(".popup__photo");
 const popupName = popupOpenCard.querySelector(".popup__description");
-
 
 addButton.addEventListener("click", openPopupAddCard);
 editButton.addEventListener("click", openPopupEditInfo);
@@ -32,27 +31,37 @@ formEditInfo.addEventListener("submit", handleEditFormSubmit);
 formAddCard.addEventListener("submit", handleAddFormSubmit);
 editButton.addEventListener("keydown", keyHandler);
 addButton.addEventListener("keydown", keyHandler);
+document.addEventListener("keydown", keyHandler);
 popupEditInfo.addEventListener("click", closePopupByOverlay);
 popupAddCard.addEventListener("click", closePopupByOverlay);
 popupOpenCard.addEventListener("click", closePopupByOverlay);
-document.addEventListener("keydown", keyHandler);
+
+enableValidation();
+
+function hideAllErrors() {
+  hideInputError(popupEditInfo, nameInput);
+  hideInputError(popupEditInfo, aboutInput);
+  hideInputError(popupAddCard, placeInput);
+  hideInputError(popupAddCard, linkInput);
+}
+
+function closeAllPopups() {
+  closePopupEdit();
+  closePopupAdd();
+  closePopupFullCard();
+}
 
 function closePopupByOverlay(evt) {
   if (evt.currentTarget === evt.target) {
-    closePopupEdit();
-    closePopupAdd();
-    closePopupFullCard();
+    closeAllPopups();
   }
 }
 
 function keyHandler(evt) {
   if (evt.key === "Escape") {
-    closePopupEdit();
-    closePopupAdd();
-    closePopupFullCard();
+    closeAllPopups();
   }
 }
-
 
 function openPopup(obj) {
   obj.classList.add("popup_active");
@@ -65,11 +74,13 @@ function openPopupEditInfo() {
   nameInput.value = profileName.textContent;
   aboutInput.value = profileAbout.textContent;
   openPopup(popupEditInfo);
+  hideAllErrors();
 }
 
 function openPopupAddCard() {
   openPopup(popupAddCard);
   formAddCard.reset();
+  hideAllErrors();
 }
 
 function openPopupFullCard() {
@@ -151,4 +162,3 @@ const renderCard = (item, elementsSection) => {
 initialCards.forEach((item) => {
   renderCard(item, elementsSection);
 });
-

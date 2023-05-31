@@ -6,7 +6,3 @@
   border-radius: 2px;
 }
 
-.popup__save-btn_inactive:hover {
-  cursor: pointer;
-  opacity: 0.2;
-}

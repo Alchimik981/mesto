@@ -32,16 +32,17 @@ function setEventListeners(formElement) {
   });
 }
 
+
 const enableValidation = () => {
   const formList = Array.from(document.querySelector(".popup__container"));
   formList.forEach((formElement) => {
     formElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });
-    setEventListeners(formEditInfo);
-    setEventListeners(formAddCard);
+    setEventListeners(formElement);
   });
 };
+
 
 function hasInvalidInput(inputList) {
   return inputList.some((inputElement) => {
@@ -52,7 +53,19 @@ function hasInvalidInput(inputList) {
 function toggleButtonState(inputList, buttonElement) {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add("popup__save-btn_inactive");
+    buttonElement.disabled = true;
   } else {
     buttonElement.classList.remove("popup__save-btn_inactive");
+    buttonElement.disabled = false;
   }
 }
+
+enableValidation({
+  formElement: '.popup__container',
+  inputElement: '.input-text',
+  buttonElement: '.popup__save-btn',
+  inactiveButtonClass: 'popup__save-btn_inactive',
+  inputErrorClass: 'input-text_invalid',
+  errorClass: 'input-text__error_active'
+});
+

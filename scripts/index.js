@@ -21,20 +21,16 @@ const elementsSection = document.querySelector(".elements");
 const content = document.querySelector(".content");
 const popupLink = popupOpenCard.querySelector(".popup__photo");
 const popupName = popupOpenCard.querySelector(".popup__description");
+const cardTemplate = document.querySelector("#element-template").content.querySelector('.element');
 
 addButton.addEventListener("click", openPopupAddCard);
 editButton.addEventListener("click", openPopupEditInfo);
-closePopupEditInfo.addEventListener("click", closePopupEdit);
-closePopupAddCard.addEventListener("click", closePopupAdd);
-closePopupOpenCard.addEventListener("click", closePopupFullCard);
 formEditInfo.addEventListener("submit", handleEditFormSubmit);
 formAddCard.addEventListener("submit", handleAddFormSubmit);
-editButton.addEventListener("keydown", keyHandler);
-addButton.addEventListener("keydown", keyHandler);
 document.addEventListener("keydown", keyHandler);
-popupEditInfo.addEventListener("click", closePopupByOverlay);
-popupAddCard.addEventListener("click", closePopupByOverlay);
-popupOpenCard.addEventListener("click", closePopupByOverlay);
+popupEditInfo.addEventListener("click", handleCloseByClick);
+popupAddCard.addEventListener("click", handleCloseByClick);
+popupOpenCard.addEventListener("click", handleCloseByClick);
 
 enableValidation();
 
@@ -45,21 +41,15 @@ function hideAllErrors() {
   hideInputError(popupAddCard, linkInput);
 }
 
-function closeAllPopups() {
-  closePopupEdit();
-  closePopupAdd();
-  closePopupFullCard();
-}
-
-function closePopupByOverlay(evt) {
-  if (evt.currentTarget === evt.target) {
-    closeAllPopups();
+function handleCloseByClick(evt) {
+  if (evt.currentTarget === evt.target || evt.target.classList.contains('popup__close')) {
+    closePopup(evt.currentTarget);
   }
 }
 
 function keyHandler(evt) {
   if (evt.key === "Escape") {
-    closeAllPopups();
+    closePopup(document.querySelector(".popup_active"));
   }
 }
 
@@ -81,6 +71,8 @@ function openPopupAddCard() {
   openPopup(popupAddCard);
   formAddCard.reset();
   hideAllErrors();
+  savePopupAddCard.classList.add("popup__save-btn_inactive");
+  savePopupAddCard.disabled = true;
 }
 
 function openPopupFullCard() {
@@ -118,40 +110,36 @@ function handleAddFormSubmit(evt) {
   closePopupAdd();
 }
 
-const handleLikeIcon = (initialCards) => {
-  initialCards.target.classList.toggle("element__like-btn_active");
+const handleLikeIcon = (evt) => {
+  evt.target.classList.toggle("element__like-btn_active");
 };
 
-const handleDeleteIcon = (initialCards) => {
-  const card = initialCards.target.closest(".element");
+const handleDeleteIcon = (evt) => {
+  const card = evt.target.closest(".element");
   card.remove();
 };
 
-const handleOpenPicture = (initialCards) => {
-  const cardLink = initialCards.target.closest(".element__pic").src;
-  const cardName = initialCards.target.closest(".element").textContent;
+const handleOpenPicture = (evt) => {
+  openPopupFullCard();
+  const cardLink = evt.target.closest(".element__pic").src;
+  const cardName = evt.target.closest(".element").textContent;
   popupLink.src = cardLink;
   popupName.textContent = cardName;
 };
 
-const getCardElement = (initialCards) => {
-  const cardElement = document
-    .querySelector("#element-template")
-    .content.cloneNode(true);
-  cardElement.querySelector(".element__pic").src = initialCards.link;
-  cardElement.querySelector(".element__text").textContent = initialCards.name;
+const getCardElement = (cardData) => {
+  const cardElement = cardTemplate.cloneNode(true);
+  const linkElement = cardElement.querySelector(".element__pic");
+  linkElement.src = cardData.link;
+  linkElement.alt = cardData.name;
+  cardElement.querySelector(".element__text").textContent = cardData.name;
   cardElement
     .querySelector(".element__delete-btn")
     .addEventListener("click", handleDeleteIcon);
   cardElement
     .querySelector(".element__like-btn")
     .addEventListener("click", handleLikeIcon);
-  cardElement
-    .querySelector(".element__pic")
-    .addEventListener("click", openPopupFullCard);
-  cardElement
-    .querySelector(".element__pic")
-    .addEventListener("click", handleOpenPicture);
+  linkElement.addEventListener("click", handleOpenPicture);
   return cardElement;
 };
 

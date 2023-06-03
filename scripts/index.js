@@ -27,12 +27,12 @@ addButton.addEventListener("click", openPopupAddCard);
 editButton.addEventListener("click", openPopupEditInfo);
 formEditInfo.addEventListener("submit", handleEditFormSubmit);
 formAddCard.addEventListener("submit", handleAddFormSubmit);
-document.addEventListener("keydown", keyHandler);
+document.addEventListener('keydown', keyHandler)
 popupEditInfo.addEventListener("click", handleCloseByClick);
 popupAddCard.addEventListener("click", handleCloseByClick);
 popupOpenCard.addEventListener("click", handleCloseByClick);
 
-enableValidation();
+validateInputs();
 
 function hideAllErrors() {
   hideInputError(popupEditInfo, nameInput);
@@ -65,6 +65,7 @@ function openPopupEditInfo() {
   aboutInput.value = profileAbout.textContent;
   openPopup(popupEditInfo);
   hideAllErrors();
+  setEventListeners(formEditInfo);
 }
 
 function openPopupAddCard() {
@@ -73,6 +74,7 @@ function openPopupAddCard() {
   hideAllErrors();
   savePopupAddCard.classList.add("popup__save-btn_inactive");
   savePopupAddCard.disabled = true;
+  setEventListeners(formAddCard);
 }
 
 function openPopupFullCard() {

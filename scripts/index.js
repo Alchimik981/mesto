@@ -21,13 +21,15 @@ const elementsSection = document.querySelector(".elements");
 const content = document.querySelector(".content");
 const popupLink = popupOpenCard.querySelector(".popup__photo");
 const popupName = popupOpenCard.querySelector(".popup__description");
-const cardTemplate = document.querySelector("#element-template").content.querySelector('.element');
+const cardTemplate = document
+  .querySelector("#element-template")
+  .content.querySelector(".element");
 
 addButton.addEventListener("click", openPopupAddCard);
 editButton.addEventListener("click", openPopupEditInfo);
 formEditInfo.addEventListener("submit", handleEditFormSubmit);
 formAddCard.addEventListener("submit", handleAddFormSubmit);
-document.addEventListener('keydown', keyHandler)
+document.addEventListener("keydown", keyHandler);
 popupEditInfo.addEventListener("click", handleCloseByClick);
 popupAddCard.addEventListener("click", handleCloseByClick);
 popupOpenCard.addEventListener("click", handleCloseByClick);
@@ -42,7 +44,10 @@ function hideAllErrors() {
 }
 
 function handleCloseByClick(evt) {
-  if (evt.currentTarget === evt.target || evt.target.classList.contains('popup__close')) {
+  if (
+    evt.currentTarget === evt.target ||
+    evt.target.classList.contains("popup__close")
+  ) {
     closePopup(evt.currentTarget);
   }
 }
@@ -72,8 +77,7 @@ function openPopupAddCard() {
   openPopup(popupAddCard);
   formAddCard.reset();
   hideAllErrors();
-  savePopupAddCard.classList.add("popup__save-btn_inactive");
-  savePopupAddCard.disabled = true;
+  handleInactiveSaveButton(savePopupAddCard)
   setEventListeners(formAddCard);
 }
 
@@ -83,14 +87,17 @@ function openPopupFullCard() {
 
 function closePopupEdit() {
   closePopup(popupEditInfo);
+  document.removeEventListener("keydown", keyHandler);
 }
 
 function closePopupAdd() {
   closePopup(popupAddCard);
+  document.removeEventListener("keydown", keyHandler);
 }
 
 function closePopupFullCard() {
   closePopup(popupOpenCard);
+  document.removeEventListener("keydown", keyHandler);
 }
 
 function handleEditFormSubmit(evt) {
@@ -126,6 +133,7 @@ const handleOpenPicture = (evt) => {
   const cardLink = evt.target.closest(".element__pic").src;
   const cardName = evt.target.closest(".element").textContent;
   popupLink.src = cardLink;
+  popupLink.alt = cardName;
   popupName.textContent = cardName;
 };
 

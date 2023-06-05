@@ -47,10 +47,14 @@ function hasInvalidInput(inputList) {
   });
 }
 
+function handleInactiveSaveButton(buttonElement) {
+  buttonElement.classList.add(enableValidation.inactiveButtonClass);
+  buttonElement.disabled = true;
+}
+
 function toggleButtonState(inputList, buttonElement) {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(enableValidation.inactiveButtonClass);
-    buttonElement.disabled = true;
+    handleInactiveSaveButton(buttonElement)
   } else {
     buttonElement.classList.remove(enableValidation.inactiveButtonClass);
     buttonElement.disabled = false;

@@ -21,15 +21,11 @@ const elementsSection = document.querySelector(".elements");
 const content = document.querySelector(".content");
 const popupLink = popupOpenCard.querySelector(".popup__photo");
 const popupName = popupOpenCard.querySelector(".popup__description");
-const cardTemplate = document
-  .querySelector("#element-template")
-  .content.querySelector(".element");
-
+const cardTemplate = document.querySelector("#element-template").content.querySelector(".element");
 addButton.addEventListener("click", openPopupAddCard);
 editButton.addEventListener("click", openPopupEditInfo);
 formEditInfo.addEventListener("submit", handleEditFormSubmit);
 formAddCard.addEventListener("submit", handleAddFormSubmit);
-document.addEventListener("keydown", keyHandler);
 popupEditInfo.addEventListener("click", handleCloseByClick);
 popupAddCard.addEventListener("click", handleCloseByClick);
 popupOpenCard.addEventListener("click", handleCloseByClick);
@@ -60,9 +56,12 @@ function keyHandler(evt) {
 
 function openPopup(obj) {
   obj.classList.add("popup_active");
+  document.addEventListener("keydown", keyHandler);
 }
+
 function closePopup(obj) {
   obj.classList.remove("popup_active");
+  document.removeEventListener("keydown", keyHandler);
 }
 
 function openPopupEditInfo() {
@@ -74,10 +73,11 @@ function openPopupEditInfo() {
 }
 
 function openPopupAddCard() {
+  savePopupAddCard.textContent = 'Создать';
   openPopup(popupAddCard);
   formAddCard.reset();
   hideAllErrors();
-  handleInactiveSaveButton(savePopupAddCard)
+  handleInactiveSaveButton(savePopupAddCard);
   setEventListeners(formAddCard);
 }
 
@@ -87,17 +87,14 @@ function openPopupFullCard() {
 
 function closePopupEdit() {
   closePopup(popupEditInfo);
-  document.removeEventListener("keydown", keyHandler);
 }
 
 function closePopupAdd() {
   closePopup(popupAddCard);
-  document.removeEventListener("keydown", keyHandler);
 }
 
 function closePopupFullCard() {
   closePopup(popupOpenCard);
-  document.removeEventListener("keydown", keyHandler);
 }
 
 function handleEditFormSubmit(evt) {

@@ -1,10 +1,10 @@
 .input-text {
-  margin: 15px auto 0 auto;
+  margin: 0 auto 0 auto;
   width: 84%;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  padding: 13px 0;
+  padding: 0 0 8px 0;
   box-sizing: border-box;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -16,7 +16,7 @@
 }
 
 .input-text:first-of-type {
-  margin: 35px auto 0 auto;
+  margin: 50px auto 0 auto;
 }
 
 @media screen and (max-width: 767px) {

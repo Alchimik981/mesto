@@ -1,4 +1,4 @@
-export const profile = document.querySelector(".profile");
+const profile = document.querySelector(".profile");
 export const editButton = profile.querySelector(".profile__edit-btn");
 export const addButton = profile.querySelector(".profile__add-btn");
 export const popupEditInfo = document.querySelector(".popup_edit-info");

@@ -28,17 +28,13 @@ export class Card {
     });
   }
 
-  handleLikeIcon() {
-    this._likeIcon.addEventListener("click", () => {
-      this._likeIcon.classList.toggle("element__like-btn_active");
-    });
+  likeCard() {
+    this._likeIcon.classList.toggle("element__like-btn_active");
   }
 
-  handleDeleteIcon() {
-    this._deleteIcon.addEventListener("click", () => {
-      this._element.remove();
-      this._element = null;
-    });
+  deleteCard() {
+    this._element.remove();
+    this._element = null;
   }
 
   createCard(openCard) {
@@ -47,9 +43,13 @@ export class Card {
     this._cardPic.src = this._link;
     this._cardPic.alt = this._name;
     this._openCard = openCard;
-    this.handleDeleteIcon();
-    this.handleLikeIcon();
     this._setOpenPictureListener();
+    this._likeIcon.addEventListener("click", () => {
+      this.likeCard();
+    });
+    this._deleteIcon.addEventListener("click", () => {
+      this.deleteCard();
+    });
 
     return this._element;
   }

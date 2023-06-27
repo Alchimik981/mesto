@@ -90,7 +90,10 @@ initialCards.forEach((card) => {
   elementsSection.prepend(newCard);
 });
 
-const profileFormValidator = new FormValidator(formEditInfo, validationSettings);
+const profileFormValidator = new FormValidator(
+  formEditInfo,
+  validationSettings
+);
 profileFormValidator.validateInputs();
 
 const cardFormValidator = new FormValidator(formAddCard, validationSettings);

@@ -1,12 +1,16 @@
 const profile = document.querySelector(".profile");
-export const popupProfileOpenButton = profile.querySelector(".profile__edit-btn");
-export const popupAddCardOpenButton = profile.querySelector(".profile__add-btn");
+export const popupProfileOpenButton =
+  profile.querySelector(".profile__edit-btn");
+export const popupAddCardOpenButton =
+  profile.querySelector(".profile__add-btn");
 export const popupEditInfo = document.querySelector(".popup_edit-info");
 export const popupAddCard = document.querySelector(".popup_add-card");
 export const popupOpenCard = document.querySelector(".popup_open-card");
 export const profileName = document.querySelector(".profile__name");
 export const profileAbout = document.querySelector(".profile__about");
-export const formEditInfo = document.querySelector(".popup__container_edit-info");
+export const formEditInfo = document.querySelector(
+  ".popup__container_edit-info"
+);
 export const formAddCard = document.querySelector(".popup__container_add-card");
 export const nameInput = document.querySelector(".input-text_type_name");
 export const aboutInput = document.querySelector(".input-text_type_about");

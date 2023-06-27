@@ -16,7 +16,7 @@ export class Card {
       .cloneNode(true);
   }
 
-  _handleOpenPicture() {
+  _setOpenPictureListener() {
     this._cardPic.addEventListener("click", () => {
       const openPopupFullCard = document.querySelector(".popup_open-card");
       const cardLink = openPopupFullCard.querySelector(".popup__photo");
@@ -28,19 +28,28 @@ export class Card {
     });
   }
 
+  handleLikeIcon() {
+    this._likeIcon.addEventListener("click", () => {
+      this._likeIcon.classList.toggle("element__like-btn_active");
+    });
+  }
+
+  handleDeleteIcon() {
+    this._deleteIcon.addEventListener("click", () => {
+      this._element.remove();
+      this._element = null;
+    });
+  }
+
   createCard(openCard) {
     const cardTitle = this._element.querySelector(".element__text");
     cardTitle.textContent = this._name;
     this._cardPic.src = this._link;
     this._cardPic.alt = this._name;
     this._openCard = openCard;
-    this._likeIcon.addEventListener("click", () => {
-      this._likeIcon.classList.toggle("element__like-btn_active");
-    });
-    this._deleteIcon.addEventListener("click", () => {
-      this._element.remove();
-    });
-    this._handleOpenPicture();
+    this.handleDeleteIcon();
+    this.handleLikeIcon();
+    this._setOpenPictureListener();
 
     return this._element;
   }

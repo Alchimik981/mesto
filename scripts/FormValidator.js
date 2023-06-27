@@ -39,7 +39,7 @@ export class FormValidator {
     return Array.from(this._inputList).some((input) => !input.validity.valid);
   }
 
-  _handleInactiveSaveButton() {
+  handleInactiveSaveButton() {
     this._submitButton.classList.add(this._inactiveButtonClass);
     this._submitButton.disabled = true;
   }
@@ -51,7 +51,7 @@ export class FormValidator {
 
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
-      this._handleInactiveSaveButton();
+      this.handleInactiveSaveButton();
     } else {
       this._handleActiveSaveButton();
     }

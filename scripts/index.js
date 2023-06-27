@@ -1,6 +1,6 @@
 import {
-  editButton,
-  addButton,
+  popupProfileOpenButton,
+  popupAddCardOpenButton,
   popupEditInfo,
   popupAddCard,
   popupOpenCard,
@@ -12,21 +12,13 @@ import {
   aboutInput,
   placeInput,
   linkInput,
-  savePopupAddCard,
+  popupAddCardSave,
   elementsSection,
   initialCards,
   validationSettings,
 } from "./constants.js";
-import { Card } from "./cards.js";
-import { FormValidator } from "./validate.js";
-
-addButton.addEventListener("click", openPopupAddCard);
-editButton.addEventListener("click", openPopupEditInfo);
-formEditInfo.addEventListener("submit", handleEditFormSubmit);
-formAddCard.addEventListener("submit", handleAddFormSubmit);
-popupEditInfo.addEventListener("click", handleCloseByClick);
-popupAddCard.addEventListener("click", handleCloseByClick);
-popupOpenCard.addEventListener("click", handleCloseByClick);
+import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
 
 function handleCloseByClick(evt) {
   if (
@@ -60,9 +52,9 @@ function openPopupEditInfo() {
 }
 
 function openPopupAddCard() {
-  savePopupAddCard.textContent = "Создать";
   openPopup(popupAddCard);
   formAddCard.reset();
+  cardFormValidator.handleInactiveSaveButton();
 }
 
 function handleEditFormSubmit(evt) {
@@ -84,6 +76,14 @@ function handleAddFormSubmit(evt) {
   elementsSection.prepend(newCard);
   closePopup(popupAddCard);
 }
+
+popupAddCardOpenButton.addEventListener("click", openPopupAddCard);
+popupProfileOpenButton.addEventListener("click", openPopupEditInfo);
+formEditInfo.addEventListener("submit", handleEditFormSubmit);
+formAddCard.addEventListener("submit", handleAddFormSubmit);
+popupEditInfo.addEventListener("click", handleCloseByClick);
+popupAddCard.addEventListener("click", handleCloseByClick);
+popupOpenCard.addEventListener("click", handleCloseByClick);
 
 initialCards.forEach((card) => {
   const newCard = new Card(card, "#element-template").createCard(openPopup);

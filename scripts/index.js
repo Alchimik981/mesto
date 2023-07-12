@@ -1,100 +1,89 @@
 import {
   popupProfileOpenButton,
   popupAddCardOpenButton,
-  popupEditInfo,
-  popupAddCard,
-  popupOpenCard,
-  profileName,
-  profileAbout,
   formEditInfo,
   formAddCard,
   nameInput,
   aboutInput,
   placeInput,
   linkInput,
-  popupAddCardSave,
-  elementsSection,
   initialCards,
   validationSettings,
 } from "./constants.js";
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
+import Section from "./Section.js";
+import PopupWithImage from "./PopupWithImage.js";
+import UserInfo from "./UserInfo.js";
+import PopupWithForm from "./PopupWithForm.js";
 
-function handleCloseByClick(evt) {
-  if (
-    evt.currentTarget === evt.target ||
-    evt.target.classList.contains("popup__close")
-  ) {
-    closePopup(evt.currentTarget);
-  }
-}
+//попап - изменение данных профиля
+const userInfo = new UserInfo({
+  title: ".profile__name",
+  caption: ".profile__about",
+});
 
-function keyHandler(evt) {
-  if (evt.key === "Escape") {
-    closePopup(document.querySelector(".popup_active"));
-  }
-}
+const popupInfoEdit = new PopupWithForm(".popup_edit-info", () => {
+  userInfo.setUserInfo({
+    inputName: nameInput.value,
+    inputAbout: aboutInput.value,
+  });
+  popupInfoEdit.close();
+});
+popupInfoEdit.setEventListeners();
 
-function openPopup(obj) {
-  obj.classList.add("popup_active");
-  document.addEventListener("keydown", keyHandler);
-}
+popupProfileOpenButton.addEventListener("click", () => {
+  const { inputName, inputAbout } = userInfo.getUserInfo();
+  nameInput.value = inputName;
+  aboutInput.value = inputAbout;
+  popupInfoEdit.open();
+});
 
-function closePopup(obj) {
-  obj.classList.remove("popup_active");
-  document.removeEventListener("keydown", keyHandler);
-}
-
-function openPopupEditInfo() {
-  nameInput.value = profileName.textContent;
-  aboutInput.value = profileAbout.textContent;
-  openPopup(popupEditInfo);
-}
-
-function openPopupAddCard() {
-  openPopup(popupAddCard);
-  formAddCard.reset();
-  cardFormValidator.handleInactiveSaveButton();
-}
-
-function handleEditFormSubmit(evt) {
-  evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileAbout.textContent = aboutInput.value;
-  closePopup(popupEditInfo);
-}
-
-function handleAddFormSubmit(evt) {
-  evt.preventDefault();
-  const newCard = new Card(
+//попап - добавление картинки на страницу
+const popupCardAdd = new PopupWithForm(".popup_add-card", () => {
+  const card = new Card(
     {
       name: placeInput.value,
       link: linkInput.value,
     },
     "#element-template"
-  ).createCard(openPopup);
-  elementsSection.prepend(newCard);
-  closePopup(popupAddCard);
-}
+  ).createCard();
+  cardsFromBox.addItem(card);
+  popupCardAdd.close();
+});
+popupCardAdd.setEventListeners();
 
-popupAddCardOpenButton.addEventListener("click", openPopupAddCard);
-popupProfileOpenButton.addEventListener("click", openPopupEditInfo);
-formEditInfo.addEventListener("submit", handleEditFormSubmit);
-formAddCard.addEventListener("submit", handleAddFormSubmit);
-popupEditInfo.addEventListener("click", handleCloseByClick);
-popupAddCard.addEventListener("click", handleCloseByClick);
-popupOpenCard.addEventListener("click", handleCloseByClick);
-
-initialCards.forEach((card) => {
-  const newCard = new Card(card, "#element-template").createCard(openPopup);
-  elementsSection.prepend(newCard);
+popupAddCardOpenButton.addEventListener("click", function (evt) {
+  evt.preventDefault();
+  popupCardAdd.open();
+  formAddCard.reset();
+  cardFormValidator.handleInactiveSaveButton();
 });
 
+//Рендер карточек из при запуске страницы
+const cardsFromBox = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      return new Card(item, "#element-template").createCard();
+    },
+  },
+  ".elements"
+);
+
+cardsFromBox.render();
+
+//попап - открытие картинки на весь экран
+export const popupFullImage = new PopupWithImage(".popup_open-card");
+popupFullImage._setEventListeners();
+
+//Валидация полей ввода
 const profileFormValidator = new FormValidator(
   formEditInfo,
   validationSettings
 );
-profileFormValidator.validateInputs();
 
 const cardFormValidator = new FormValidator(formAddCard, validationSettings);
+
+profileFormValidator.validateInputs();
 cardFormValidator.validateInputs();

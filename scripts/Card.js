@@ -1,3 +1,5 @@
+import { popupFullImage } from "./index.js";
+
 export class Card {
   constructor(data, template) {
     this._name = data.name;
@@ -24,7 +26,7 @@ export class Card {
       cardLink.src = this._link;
       cardLink.alt = this._name;
       cardName.textContent = this._name;
-      this._openCard(openPopupFullCard);
+      popupFullImage.open(this._link, this._name)
     });
   }
 
@@ -37,12 +39,11 @@ export class Card {
     this._element = null;
   }
 
-  createCard(openCard) {
+  createCard() {
     const cardTitle = this._element.querySelector(".element__text");
     cardTitle.textContent = this._name;
     this._cardPic.src = this._link;
     this._cardPic.alt = this._name;
-    this._openCard = openCard;
     this._setOpenPictureListener();
     this._likeIcon.addEventListener("click", () => {
       this.likeCard();

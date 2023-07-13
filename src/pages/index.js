@@ -1,3 +1,4 @@
+import './index.css'
 import {
   popupProfileOpenButton,
   popupAddCardOpenButton,
@@ -9,15 +10,16 @@ import {
   linkInput,
   initialCards,
   validationSettings,
-} from "./constants.js";
-import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
-import Section from "./Section.js";
-import PopupWithImage from "./PopupWithImage.js";
-import UserInfo from "./UserInfo.js";
-import PopupWithForm from "./PopupWithForm.js";
+} from "../utils/constants.js";
+import { Card } from '../components/Card.js'
+import { FormValidator } from "../components/FormValidator.js";
+import Section from '../components/Section.js'
+import PopupWithImage from "../components/PopupWithImage.js";
+import UserInfo from "../components/UserInfo.js";
+import PopupWithForm from "../components/PopupWithForm.js";
 
-//попап - изменение данных профиля
+//Popups:
+//Popup - изменение данных профиля
 const userInfo = new UserInfo({
   title: ".profile__name",
   caption: ".profile__about",
@@ -39,7 +41,7 @@ popupProfileOpenButton.addEventListener("click", () => {
   popupInfoEdit.open();
 });
 
-//попап - добавление картинки на страницу
+//Popup - добавление картинки на страницу
 const popupCardAdd = new PopupWithForm(".popup_add-card", () => {
   const card = new Card(
     {
@@ -60,6 +62,10 @@ popupAddCardOpenButton.addEventListener("click", function (evt) {
   cardFormValidator.handleInactiveSaveButton();
 });
 
+//Popup - открытие картинки на весь экран
+export const popupFullImage = new PopupWithImage(".popup_open-card");
+popupFullImage._setEventListeners();
+
 //Рендер карточек из при запуске страницы
 const cardsFromBox = new Section(
   {
@@ -72,10 +78,6 @@ const cardsFromBox = new Section(
 );
 
 cardsFromBox.render();
-
-//попап - открытие картинки на весь экран
-export const popupFullImage = new PopupWithImage(".popup_open-card");
-popupFullImage._setEventListeners();
 
 //Валидация полей ввода
 const profileFormValidator = new FormValidator(
